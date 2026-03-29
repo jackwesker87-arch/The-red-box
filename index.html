@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Catch The Square</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#222;
+color:white;
+}
+
+#gameArea{
+width:500px;
+height:400px;
+border:3px solid white;
+margin:auto;
+position:relative;
+background:#333;
+}
+
+#square{
+width:50px;
+height:50px;
+background:red;
+position:absolute;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Catch The Square</h1>
+
+<h2>Score: <span id="score">0</span></h2>
+<h2>Time: <span id="time">30</span></h2>
+
+<div id="gameArea">
+<div id="square"></div>
+</div>
+
+<script>
+
+let score = 0;
+let time = 30;
+
+const square = document.getElementById("square");
+const scoreText = document.getElementById("score");
+const timeText = document.getElementById("time");
+
+function moveSquare(){
+
+let x = Math.random() * 450;
+let y = Math.random() * 350;
+
+square.style.left = x + "px";
+square.style.top = y + "px";
+
+}
+
+square.onclick = function(){
+
+score++;
+scoreText.innerText = score;
+
+moveSquare();
+
+}
+
+moveSquare();
+
+let timer = setInterval(function(){
+
+time--;
+timeText.innerText = time;
+
+if(time <= 0){
+
+clearInterval(timer);
+alert("Game Over! Your score: " + score);
+
+}
+
+},1000);
+
+</script>
+
+</body>
+
+</html>
